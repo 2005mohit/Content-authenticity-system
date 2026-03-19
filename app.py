@@ -5,8 +5,8 @@ import os
 
 # ── Path setup ───────────────────────────────────────────────────────────────
 sys.path.append(os.path.dirname(__file__))
-from pipeline.image_pipeline import load_image_model, predict_image
-from pipeline.text_pipeline import load_text_model, predict_text
+from Pipeline.image_pipeline import load_image_model, predict_image
+from Pipeline.text_pipeline import load_text_model, predict_text
 
 # ── Page Config ──────────────────────────────────────────────────────────────
 st.set_page_config(
