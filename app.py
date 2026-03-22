@@ -6,7 +6,7 @@ import os
 # ── Path setup ───────────────────────────────────────────────────────────────
 sys.path.append(os.path.dirname(__file__))
 from Pipeline.image_pipeline import load_image_model, predict_image
-from Pipeline.text_pipeline import load_text_model, predict_text
+from Pipeline.text_pipeline import load_text_model, ensemble_predict
 
 # ── Page Config ──────────────────────────────────────────────────────────────
 st.set_page_config(
@@ -67,7 +67,7 @@ with tab1:
         else:
             with st.spinner("Analyzing text..."):
                 tokenizer, text_model = get_text_model()
-                result = predict_text(user_text, tokenizer, text_model)
+                result = ensemble_predict(user_text, tokenizer, text_model)
 
             # Result display
             box_class = "ai-box" if result["label"] == "AI Generated" else "human-box"
@@ -79,14 +79,13 @@ with tab1:
             </div>
             """, unsafe_allow_html=True)
 
-            col1, col2, col3 = st.columns(3)
-            with col1:
-                st.metric(" AI Score", f"{result['score']}%")
-            with col2:
-                st.metric(" Confidence", f"{result['confidence']}%")
-            with col3:
-                st.metric(" Human Prob", f"{round(result['human_probability']*100, 2)}%")
-
+            col1, col2, col3, col4 = st.columns(4)
+            with col1: st.metric("AI Score", f"{result['score']}%")
+            with col2: st.metric("Confidence", f"{result['confidence']}%")
+            with col3: st.metric("RoBERTa", f"{result['roberta_ai']*100:.0f}%")
+            with col4: st.metric("Heuristic", f"{result['heuristic_ai']:.0f}%")
+            
+            st.caption(f"RoBERTa: {result['roberta_label']} | Heuristic: {result['heuristic_label']}")
             st.divider()
             st.progress(result['ai_probability'], text=f"AI Likelihood: {result['score']}%")
 
