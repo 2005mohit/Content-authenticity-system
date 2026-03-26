@@ -2,23 +2,6 @@
 
 A web-based system to detect whether **text and images are AI-generated or human-created** using Machine Learning.
 
----
-
-## Team Members
-
-| Name | Roll No |
-|------|---------|
-| Praduman Kumar | 2501560002 |
-| Payal Jain | 2501560009 |
-| Mohit Chandra Fulara | 2501560010 |
-| Anurag Ramola | 2501560023 |
-| Kartik Kumar | 2501560029 |
-
-**Industry Mentor:** Mr. Amit Aggarwal
-**Faculty Mentor:** Mr. Devansh Garg
-**University:** K.R. Mangalam University | MCA 2025–2026
-
----
 
 ## Project Overview
 
