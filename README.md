@@ -210,17 +210,7 @@ Authenticity Score = (1 - AI_Probability) × 100
   - Short text (< 40 words)
   - Heavily edited or paraphrased AI content
 
----
 
-## Future Work
-
-- [ ] Improve real-world image accuracy beyond 70% through domain adaptation
-- [ ] Add Grad-CAM heatmaps for image explainability
-- [ ] Handle multi-language text detection
-- [ ] Deploy a publicly accessible demo on HuggingFace Spaces
-- [ ] Detect mixed AI-human content
-
----
 
 ## Project Status
 
