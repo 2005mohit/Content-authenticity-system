@@ -5,10 +5,8 @@ from torchvision import transforms, models
 from PIL import Image
 import numpy as np
 
-# ── Device ───────────────────────────────────────────────────────────────────
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-# ── Transform (same as training) ─────────────────────────────────────────────
 TRANSFORM = transforms.Compose([
     transforms.Resize(256),
     transforms.CenterCrop(224),
@@ -21,7 +19,6 @@ TRANSFORM = transforms.Compose([
 
 
 def build_model(neurons: int):
-    """Exact same architecture used during training."""
     model = models.efficientnet_b0(weights=None)
     in_features = model.classifier[1].in_features
     model.classifier = nn.Sequential(
@@ -35,9 +32,8 @@ def build_model(neurons: int):
 
 
 def load_image_model(model_path: str = "model/image_model/image_model.pth"):
-    """Load EfficientNet model — auto-detects hidden layer size from weights."""
     state_dict = torch.load(model_path, map_location=DEVICE)
-    neurons = state_dict["classifier.1.weight"].shape[0]  # auto-detect
+    neurons = state_dict["classifier.1.weight"].shape[0]  
     model = build_model(neurons)
     model.load_state_dict(state_dict)
     model.eval()
